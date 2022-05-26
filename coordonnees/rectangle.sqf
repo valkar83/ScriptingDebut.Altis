@@ -17,7 +17,6 @@ if (_this isEqualTypeParams [nil, nil, nil, 0, 0]) then
 	tailleSegment = (_largeur / (nbPointsParLargeur - 1));
 	nbLignes = nbEscouades / nbPointsParLargeur;
 	tableauPos = _PtDepart;
-	diag_log format["l'angle theta vaut : %1", str _angleTheta];
 	LDepartInitialX = (tableauPos # 0);
 	LDepartInitialY = (tableauPos # 1);
 	for "_i" from 1 to nbLignes do

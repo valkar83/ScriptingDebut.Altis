@@ -6,13 +6,15 @@ escouadesCougar = [];
 _script = [escouadesCougar, nbEscouadesAttaque]  execVM "Generateur\cougar.sqf";
 waitUntil {scriptDone _script};
 
-// // REMPLIR coordonneesAtterrissage 
-// coordonneesAtterrissage = [];
-// [coordonneesAtterrissage, nbEscouadesAttaque]  execVM "Generateur\Atterrissage.sqf";
+// REMPLIR coordonneesAtterrissage 
+coordonneesAtterrissage = [];
+_script = [coordonneesAtterrissage, nbEscouadesAttaque]  execVM "Generateur\Atterrissage.sqf";
+waitUntil {scriptDone _script};
 
-// // GENERATION des escouades
-// escouadesAttaque = [];
-// [escouadesAttaque, nbEscouadesAttaque]  execVM "Generateur\escouadesAttaque.sqf";
+// GENERATION des escouades
+escouadesAttaque = [];
+_script = [escouadesAttaque, nbEscouadesAttaque]  execVM "Generateur\escouadesAttaque.sqf";
+waitUntil {scriptDone _script};
 
 // [coordonneesAtterrissage, nbPointsAtterrissageAdjacents]
 groupTigre = createGroup [West, true];

@@ -1,56 +1,59 @@
 
-// "Exported from Arsenal by valka";
+comment "Exported from Arsenal by valka";
 
-// "[!] UNIT MUST BE LOCAL [!]";
-if (!local _this) exitWith {};
+comment "[!] UNIT MUST BE LOCAL [!]";
+if (!local this) exitWith {};
 
-// "Remove existing items";
-removeAllWeapons _this;
-removeAllItems _this;
-removeAllAssignedItems _this;
-removeUniform _this;
-removeVest _this;
-removeBackpack _this;
-removeHeadgear _this;
-removeGoggles _this;
+comment "Remove existing items";
+removeAllWeapons this;
+removeAllItems this;
+removeAllAssignedItems this;
+removeUniform this;
+removeVest this;
+removeBackpack this;
+removeHeadgear this;
+removeGoggles this;
 
-// "Add weapons";
-_this addWeapon "R3F_Minimi_762_PARA";
-_this addPrimaryWeaponItem "optic_Hamr";
-_this addPrimaryWeaponItem "R3F_MINIMI_100Rnd_762x51";
-_this addWeapon "R3F_HKUSP";
-_this addHandgunItem "muzzle_snds_L";
-_this addHandgunItem "R3F_15Rnd_9x19_HKUSP";
+comment "Add weapons";
+this addWeapon "R3F_Minimi_556_PARA";
+this addPrimaryWeaponItem "AMF_xps3_magnifier_side";
+this addPrimaryWeaponItem "R3F_MINIMI_200Rnd_556x45";
+this addWeapon "R3F_HKUSP";
+this addHandgunItem "muzzle_snds_L";
+this addHandgunItem "R3F_15Rnd_9x19_HKUSP";
 
-// "Add containers";
-_this forceAddUniform "R3F_uniform_f1";
-_this addVest "R3F_veste_noire";
-_this addBackpack "R3F_sac_moyen_CE";
+comment "Add containers";
+this forceAddUniform "R3F_uniform_f1";
+this addVest "R3F_veste_noire";
+this addBackpack "R3F_sac_petit_noir";
 
-// "Add binoculars";
-_this addMagazine "Laserbatteries";
-_this addWeapon "Laserdesignator_03";
+comment "Add binoculars";
+this addMagazine "Laserbatteries";
+this addWeapon "Laserdesignator_03";
 
-// "Add items to containers";
-for "_i" from 1 to 2 do {_this addItemToUniform "FirstAidKit";};
-for "_i" from 1 to 2 do {_this addItemToUniform "Chemlight_blue";};
-for "_i" from 1 to 3 do {_this addItemToVest "R3F_15Rnd_9x19_HKUSP";};
-_this addItemToVest "B_IR_Grenade";
-for "_i" from 1 to 2 do {_this addItemToVest "MiniGrenade";};
-for "_i" from 1 to 4 do {_this addItemToVest "SmokeShell";};
-for "_i" from 1 to 2 do {_this addItemToVest "SmokeShellBlue";};
-_this addItemToVest "R3F_MINIMI_100Rnd_762x51";
-for "_i" from 1 to 6 do {_this addItemToBackpack "R3F_MINIMI_100Rnd_762x51";};
-_this addHeadgear "R3F_casqueFS_noir";
-_this addGoggles "R3F_cagoule_olive";
+comment "Add items to containers";
+for "_i" from 1 to 2 do {this addItemToUniform "FirstAidKit";};
+for "_i" from 1 to 2 do {this addItemToUniform "Chemlight_blue";};
+for "_i" from 1 to 3 do {this addItemToVest "R3F_15Rnd_9x19_HKUSP";};
+this addItemToVest "B_IR_Grenade";
+for "_i" from 1 to 2 do {this addItemToVest "MiniGrenade";};
+for "_i" from 1 to 4 do {this addItemToVest "SmokeShell";};
+for "_i" from 1 to 2 do {this addItemToVest "SmokeShellBlue";};
+this addItemToVest "R3F_MINIMI_200Rnd_556x45";
+for "_i" from 1 to 2 do {this addItemToBackpack "FirstAidKit";};
+for "_i" from 1 to 3 do {this addItemToBackpack "R3F_MINIMI_200Rnd_556x45";};
+this addItemToBackpack "B_IR_Grenade";
+for "_i" from 1 to 3 do {this addItemToBackpack "SmokeShellRed";};
+this addHeadgear "R3F_casqueFS_noir";
+this addGoggles "R3F_cagoule_olive";
 
-// "Add items";
-_this linkItem "ItemMap";
-_this linkItem "ItemCompass";
-_this linkItem "ItemWatch";
-_this linkItem "ItemRadio";
-_this linkItem "ItemGPS";
-_this linkItem "NVGoggles_OPFOR";
+comment "Add items";
+this linkItem "ItemMap";
+this linkItem "ItemCompass";
+this linkItem "ItemWatch";
+this linkItem "ItemRadio";
+this linkItem "ItemGPS";
+this linkItem "NVGoggles_OPFOR";
 
-// "Set identity";
-[_this,"Default","male03fre"] call BIS_fnc_setIdentity;
+comment "Set identity";
+[this,"WhiteHead_09","male07eng"] call BIS_fnc_setIdentity;

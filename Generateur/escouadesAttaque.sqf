@@ -8,10 +8,11 @@ _script = [coordonneesGeneration, pointDeDepart, PointDArrive,
  nbPointsParLargeur, nbEscouadesAssaut] execVM "coordonnees\rectangle.sqf";
 waitUntil {scriptDone _script};
 
-for "_i" from 0 to (nbEscouadesAssaut - 1) do
+for "_i" from 0 to ((count coordonneesGeneration) - 1) do
 {
 	_groupEscouade = createGroup [West, true];
-	_scrip = [_groupEscouade, (coordonneesGeneration # _i)] execVM "groupes\commandoGroup.sqf";
+	_position = coordonneesGeneration # _i;
+	_scrip = [_groupEscouade, _position] execVM "groupes\commandoGroup.sqf";
 	waitUntil {scriptDone _script};
 	escouadesAssaut set [_i, _groupEscouade];
 };

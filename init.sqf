@@ -18,9 +18,15 @@ waitUntil {scriptDone _script};
 
 // [coordonneesAtterrissage, nbPointsAtterrissageAdjacents]
 groupTigre = createGroup [West, true];
-groupTigre execVM "groupes\helicopTigre.sqf";
-// for "_i" from 0 to (nbEscouadesAttaque - 1) do
-// {
-// [escouadesAttaque # _i, escouadesCougar # _i, coordonneesAtterrissage # _i] execVM "Deplacement\deplacementHelicopGroupe.sqf";
-// };
+_script = groupTigre execVM "groupes\helicopTigre.sqf";
+waitUntil {scriptDone _script};
+
+for "_i" from 0 to (nbEscouadesAttaque - 1) do
+{
+	_groupAttaque = escouadesAttaque # _i;
+	_groupHelicop = escouadesCougar # _i;
+	_coordonneAtte = coordonneesAtterrissage # _i;
+
+[ _groupAttaque, _groupHelicop, _coordonneAtte] execVM "Deplacement\deplacementHelicopGroupe.sqf";
+};
 groupTigre execVM "Deplacement\deplacementTigre.sqf";

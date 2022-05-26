@@ -12,22 +12,20 @@ if (_this isEqualTypeParams[grpNull, nil]) then
 			{
 			case "at4" :
 				{
-					"R3F_CQB_4" CreateUnit[_position, _group,
-					"this execVM 'customLoadOut\customLoadOutAt4.sqf'", 0.5, "COLONEL"];
+					"OFrP_Soldier_2019_AC_AT4CS_CE" CreateUnit[_position, _group];
 				};
 			case "combattant":
 				{
-					"R3F_CQB_1" CreateUnit[_position, _group,
-					"this execVM 'customLoadOut\customLoadOutcombattant.sqf'"];
+					"OFrP_Soldier_2019_MachineGunner01_CE" CreateUnit[_position, _group];
 				};
 			case "medic":
 				{
-					"R3F_CQB_MEDIC" CreateUnit[_position, _group,
-					"this execVM 'customLoadOut\customLoadOutMedic.sqf'"];
+					"OFrP_Soldier_2019_Medic_CE" CreateUnit[_position, _group];
 				};
-			};
-			
+			};			
 		};
+		"OFrP_Soldier_2019_Radio_CE" CreateUnit[_position, _group];
+		"OFrP_Soldier_2019_SL_CE" CreateUnit[_position, _group]; 
 	};
 }
 else 

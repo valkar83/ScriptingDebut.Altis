@@ -5,14 +5,14 @@ _helicopCougar = vehicle leader _groupHelicop;
 _wpembarqueCommando = _groupCommando addWaypoint [getPos leader _groupHelicop,0];
 _wpembarqueCommando waypointAttachVehicle _helicopCougar;
 _wpembarqueCommando setWaypointType "GETIN";
-ss
+
 _wpcombattre = _groupCommando addWaypoint [getmarkerPos "detruire",0];
 _wpcombattre setWaypointType "SAD";
 
 _wpAttendreCommando = _groupHelicop addWaypoint [_this select 2, 0];
 
 _wpdechargerCommando = _groupHelicop addWaypoint [_this select 2, 0];
-_wpdechargerCommando setWaypointType "TR UNLOAD";ss
+_wpdechargerCommando setWaypointType "TR UNLOAD";
 _landCougar = "Land_HelipadEmpty_F" createVehicle (_this select 2);
 _wpdechargerCommando setWaypointSpeed "FULL";
 _wpdechargerCommando setWaypointBehaviour "CARELESS";

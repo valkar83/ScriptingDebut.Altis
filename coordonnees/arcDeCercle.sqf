@@ -13,33 +13,27 @@ if (_this isEqualTypeParams[nil, nil, nil, 0]) then
 	ptArcCercle set [0, round(ptArcCercle # 0)];
 	ptArcCercle set [1, round(ptArcCercle # 1)];
 
-	LCoordTestX = 0;
-	LCoordTestY = 0;
-	rayonRef = 0;
-	for "_i" from 0 to 359 step 1/10 do
-	{
-		LCoordTestX = round(Rayon * cos(_i));
-		LCoordTestY = round(Rayon * sin(_i));
-		if ((LCoordTestX == ptArcCercle # 0) && (LCoordTestY == ptArcCercle # 1)) then 
-		{
-			rayonRef = _i;
-			break;
-		}
-	};
-
-	LDegreePositif = rayonRef;
-	LDegreeNegatif = rayonRef;
+	degreRef = 0;
+	// pour déterminer le degreRef, 
+	// on isole le rayon d'une de 2 équations paramétriques d'un cercle
+	_distanceX = (ptArcCercle # 0 - ptCentreCercle # 0);
+	_degreRef = round(acos(_distanceX/rayon));	
+	_chaine = format["distance : %1, rayon : %2 , degreRef : %3", _distanceX, rayon, _degreRef];
+	diag_log _chaine; 
+	
+	LDegreePositif = _degreRef;
+	LDegreeNegatif = _degreRef;
 
 	for "_i" from 0 to ((_nbEscouade/2)-1) do 
 	{
 		LDegreePositif = LDegreePositif + 1;
 		LDegreeNegatif = LDegreeNegatif - 1;
 
-		LCoordXPostif = Rayon * cos(LDegreePositif);
-		LCoordYPositif = Rayon * sin(LDegreePositif);
+		LCoordXPostif  = (ptCentreCercle # 0) + Rayon * cos(LDegreePositif);
+		LCoordYPositif = (ptCentreCercle # 1) + Rayon * sin(LDegreePositif);
 
-		LCoordXNegatif = Rayon * cos(LDegreeNegatif);
-		LCoordYNegatif = Rayon * sin(LDegreeNegatif);
+		LCoordXNegatif = (ptCentreCercle # 0) + Rayon * cos(LDegreeNegatif);
+		LCoordYNegatif = (ptCentreCercle # 1) + Rayon * sin(LDegreeNegatif);
 
 		tableauDeCoordonnees set [_i*2,   [LCoordXPostif, LCoordYPositif]];
 		tableauDeCoordonnees set [_i*2+1, [LCoordXNegatif, LCoordYNegatif]];

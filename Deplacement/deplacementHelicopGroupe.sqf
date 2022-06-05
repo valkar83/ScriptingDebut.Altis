@@ -9,11 +9,11 @@ _wpembarqueCommando setWaypointType "GETIN";
 _wpcombattre = _groupCommando addWaypoint [getmarkerPos "detruire",0];
 _wpcombattre setWaypointType "SAD";
 
-_wpAttendreCommando = _groupHelicop addWaypoint [_this select 2, 0];
+_wpAttendreCommando = _groupHelicop addWaypoint [getPos leader _groupHelicop, 0];
 
-_wpdechargerCommando = _groupHelicop addWaypoint [_this select 2, 0];
+_wpdechargerCommando = _groupHelicop addWaypoint [_this # 2, 0];
 _wpdechargerCommando setWaypointType "TR UNLOAD";
-_landCougar = "Land_HelipadEmpty_F" createVehicle (_this select 2);
+_landCougar = "Land_HelipadEmpty_F" createVehicle (_this # 2);
 _wpdechargerCommando setWaypointSpeed "FULL";
 _wpdechargerCommando setWaypointBehaviour "CARELESS";
 

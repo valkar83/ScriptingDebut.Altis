@@ -18,8 +18,6 @@ if (_this isEqualTypeParams[nil, nil, nil, 0]) then
 	// on isole le rayon d'une de 2 équations paramétriques d'un cercle
 	_distanceX = (ptArcCercle # 0 - ptCentreCercle # 0);
 	_degreRef = round(acos(_distanceX/rayon));	
-	_chaine = format["distance : %1, rayon : %2 , degreRef : %3", _distanceX, rayon, _degreRef];
-	diag_log _chaine; 
 	
 	LDegreePositif = _degreRef;
 	LDegreeNegatif = _degreRef;

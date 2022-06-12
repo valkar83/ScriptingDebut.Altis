@@ -28,6 +28,7 @@ for "_i" from 0 to (nbEscouadesAttaque - 1) do
 	_groupHelicop = escouadesCougar # _i;
 	_coordonneAtte = coordonneesAtterrissage # _i;
 
-[ _groupAttaque, _groupHelicop, _coordonneAtte] execVM "Deplacement\deplacementHelicopGroupe.sqf";
+    _script = [ _groupAttaque, _groupHelicop, _coordonneAtte] execVM "Deplacement\deplacementHelicopGroupe.sqf";
+	waitUntil {scriptDone _script};
 };
 groupTigre execVM "Deplacement\deplacementTigre.sqf";

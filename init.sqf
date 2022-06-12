@@ -19,7 +19,8 @@ waitUntil {scriptDone _script};
 // [coordonneesAtterrissage, nbPointsAtterrissageAdjacents]
 groupTigre = createGroup [West, true];
 _script = groupTigre execVM "groupes\helicopTigre.sqf";
-waitUntil {scriptDone _script};
+private _future = time + 3;
+waitUntil { time >= _future }; 
 
 for "_i" from 0 to (nbEscouadesAttaque - 1) do
 {

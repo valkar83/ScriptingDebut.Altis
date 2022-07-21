@@ -15,73 +15,74 @@ if (_this isEqualTypeParams[nil, nil, nil, 0]) then
 	ptArcCercle set [0, round(ptArcCercle # 0)];
 	ptArcCercle set [1, round(ptArcCercle # 1)];
 
+	ptCentreCercle set [0, round(ptCentreCercle # 0)];
+	ptCentreCercle set [1, round(ptCentreCercle # 1)];
+
 	// pour déterminer le degreRef, 
-	// on isole le rayon d'une de 2 équations paramétriques d'un cercle
+	// on isole le rayon d'une des 2 équations paramétriques d'un cercle
 	_distanceX = (ptArcCercle # 0 - ptCentreCercle # 0);
+	_chaine = "La distance X est égale à " + str(_distanceX);
+	diag_log _chaine;
 	_distanceY = (ptArcCercle # 1 - ptCentreCercle # 1);
 
-	_cosx = cos(_distanceX/rayon);
-	_degreRefX = round(acos(_cosx)); //cos et sinus ne sont définis que pour des valeurs positives	
+	_chaine = "La distance Y est égale à " + str(_distanceY);
+	diag_log _chaine;
+
+	_chaine = "Le rayon est égale à " + str(Rayon);
+	diag_log _chaine;
+
+	_degreX = round(acos(_distanceX/rayon)); //cos et sinus ne sont définis que pour des valeurs positives	
 	
-	_siny = sin(_distanceY/rayon);
-	_degreRefY = round(acos(_siny));
+	if (_degreX < 0) then 
+	{
+		_degreX = 360 + _degreX;
+	};
+	_cosX = cos(_degreX);
 
-	_degrePossibleMin = 0;
-	_degrePossibleMax = 0;
+	_degreY = round(asin(_distanceY/rayon));
+	if (_degreY < 0) then 
+	{
+		_degreY = 360 + _degreY;
+	};
+	_siny = sin(_degreY);
 
-	if (_cosx <= 0 ) then 
-	{
-		if (_siny <= 0 ) then 
-		{	
-			_degrePossibleMin = 0;
-			_degrePossibleMax = 90;
-		};
-	};
+	_degreAAjouter = (180 - _degreX) * 2;
+	_degreXAutrePossibilite = _degreAAjouter + _degreX;
 
-	if (_cosx < 0 ) then 
+	if (_degreY < 180) then 
 	{
-		if (_siny >= 0 ) then 
-		{
-			_degrePossibleMin = 91;
-			_degrePossibleMax = 180;
-		};
-	};
-	if (_cosx < 0 ) then
-	{ 
-		if (_siny < 0 ) then
-		{
-			_degrePossibleMin = 181;
-			_degrePossibleMax = 270;
-		};
-	};
-	if (_cosx >= 0 ) then 
+		_degreAAjouter = (90 - _degreY) * 2;
+		_degreYAutrePossibilite = _degreAAjouter + _degreY;
+	}
+	else 
 	{
-		if (_siny < 0 ) then
-		{
-			_degrePossibleMin = 271;
-			_degrePossibleMax = 359;
-		};		
-	};
-    _pasAssigne = True;
-	_degreRef=0;
-	if (_degreRefX >= _degrePossibleMin) then 
-	{
-		if (_degreRefX <= _degrePossibleMax) then
-		{
-			_degreRef = _degreRefX;
-			_pasAssigne = False;
-		}; 
+		_degreAAjouter = (270 - _degreY) * 2;
+		_degreYAutrePossibilite = _degreAAjouter + _degreY;
 	};
 
-	if (_degreRefY >= _degrePossibleMin) then
+	_DegreIdentifie = 0
+	_pasAssigne = True;
+	if (_degreX = _degreY) then 
 	{
-		if (_degreRefY <= _degrePossibleMax) then
-		{
-			_degreRef = _degreRefY;
-			_pasAssigne = False;
-		};
+		_pasAssigne = False;
+     	_DegreIdentifie = _degreX;
 	};
-	
+	if (_degreX = _degreYAutrePossibilite) then
+	{
+		_pasAssigne = False;
+     	_DegreIdentifie = _degreX;
+	};
+	if (_degreXAutrePossibilite = _degreY) then
+	{
+		_pasAssigne = False;
+     	_DegreIdentifie = _degreXAutrePossibilite;
+	};
+	if (_degreXAutrePossibilite = _degreYAutrePossibilite) then
+	{
+		_pasAssigne = False;
+     	_DegreIdentifie = _degreXAutrePossibilite;
+	};
+    
 	if (_pasAssigne) then
 	{
 		diag_log "rien ne correspond";

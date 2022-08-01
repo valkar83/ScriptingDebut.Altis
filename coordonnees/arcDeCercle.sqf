@@ -21,17 +21,7 @@ if (_this isEqualTypeParams[nil, nil, nil, 0]) then
 	// pour déterminer le degreRef, 
 	// on isole le rayon d'une des 2 équations paramétriques d'un cercle
 	_distanceX = (ptArcCercle # 0 - ptCentreCercle # 0);
-	_chaine = "La distance X est égale à " + str(_distanceX);
-	diag_log _chaine;
-	_distanceY = (ptArcCercle # 1 - ptCentreCercle # 1);
-
-	_chaine = "La distance Y est égale à " + str(_distanceY);
-	diag_log _chaine;
-
-	_chaine = "Le rayon est égale à " + str(Rayon);
-	diag_log _chaine;
-
-	_degreX = round(acos(_distanceX/rayon)); //cos et sinus ne sont définis que pour des valeurs positives	
+	_degreX = round(acos(_distanceX/Rayon)); //cos et sinus ne sont définis que pour des valeurs positives	
 	
 	if (_degreX < 0) then 
 	{
@@ -39,7 +29,8 @@ if (_this isEqualTypeParams[nil, nil, nil, 0]) then
 	};
 	_cosX = cos(_degreX);
 
-	_degreY = round(asin(_distanceY/rayon));
+	_distanceY = (ptArcCercle # 1 - ptCentreCercle # 1);
+	_degreY = round(asin(_distanceY/Rayon));
 	if (_degreY < 0) then 
 	{
 		_degreY = 360 + _degreY;
@@ -49,6 +40,7 @@ if (_this isEqualTypeParams[nil, nil, nil, 0]) then
 	_degreAAjouter = (180 - _degreX) * 2;
 	_degreXAutrePossibilite = _degreAAjouter + _degreX;
 
+	_degreYAutrePossibilite = 0;
 	if (_degreY < 180) then 
 	{
 		_degreAAjouter = (90 - _degreY) * 2;
@@ -60,24 +52,24 @@ if (_this isEqualTypeParams[nil, nil, nil, 0]) then
 		_degreYAutrePossibilite = _degreAAjouter + _degreY;
 	};
 
-	_DegreIdentifie = 0
+	_DegreIdentifie = 0;
 	_pasAssigne = True;
-	if (_degreX = _degreY) then 
+	if (_degreX == _degreY) then 
 	{
 		_pasAssigne = False;
      	_DegreIdentifie = _degreX;
 	};
-	if (_degreX = _degreYAutrePossibilite) then
+	if (_degreX == _degreYAutrePossibilite) then
 	{
 		_pasAssigne = False;
      	_DegreIdentifie = _degreX;
 	};
-	if (_degreXAutrePossibilite = _degreY) then
+	if (_degreXAutrePossibilite == _degreY) then
 	{
 		_pasAssigne = False;
      	_DegreIdentifie = _degreXAutrePossibilite;
 	};
-	if (_degreXAutrePossibilite = _degreYAutrePossibilite) then
+	if (_degreXAutrePossibilite == _degreYAutrePossibilite) then
 	{
 		_pasAssigne = False;
      	_DegreIdentifie = _degreXAutrePossibilite;
@@ -88,8 +80,8 @@ if (_this isEqualTypeParams[nil, nil, nil, 0]) then
 		diag_log "rien ne correspond";
 	};
 
-	LDegreePositif = _degreRef;
-	LDegreeNegatif = _degreRef;
+	LDegreePositif = _DegreIdentifie;
+	LDegreeNegatif = _DegreIdentifie;
 
 	for "_i" from 0 to ((_nbEscouade/2)-1) do 
 	{

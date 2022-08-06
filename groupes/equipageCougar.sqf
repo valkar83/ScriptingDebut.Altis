@@ -2,7 +2,7 @@ if (_this isEqualTypeParams[grpNull, nil]) then
 {
 	_group = _this # 0;
 	_positionDeGeneration = _this # 1;
-	_cougarHelicop = "ffaa_famet_cougar" createVehicle _positionDeGeneration;
+	_cougarHelicop = "amf_cougar" createVehicle _positionDeGeneration;
 	_group addVehicle _cougarHelicop;
 
 	"amf_french_combat_pilot" createUnit[ _positionDeGeneration, _group , "this moveInDriver _cougarHelicop; this setVehicleVarName 'pilote';"];
